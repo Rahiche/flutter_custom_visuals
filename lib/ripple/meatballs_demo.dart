@@ -3,14 +3,14 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_shaders/flutter_shaders.dart';
 
-class RippleDemoPage extends StatefulWidget {
-  const RippleDemoPage({super.key});
+class MeatballsDemoPage extends StatefulWidget {
+  const MeatballsDemoPage({super.key});
 
   @override
-  State<RippleDemoPage> createState() => _RippleDemoPageState();
+  State<MeatballsDemoPage> createState() => _MeatballsDemoPageState();
 }
 
-class _RippleDemoPageState extends State<RippleDemoPage>
+class _MeatballsDemoPageState extends State<MeatballsDemoPage>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
 
@@ -39,16 +39,7 @@ class _RippleDemoPageState extends State<RippleDemoPage>
           isFrameVisible: true,
           orientation: Orientation.portrait,
           screen: Scaffold(
-            body: PageView.builder(
-              itemBuilder: (BuildContext context, int index) {
-                return Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(24.0),
-                    child: buildImage(),
-                  ),
-                );
-              },
-            ),
+            body: Center(child: Bubbles()),
           ),
         ),
       ),
@@ -142,6 +133,88 @@ class ShaderHelper {
         size.height,
       ),
       Paint()..shader = shader,
+    );
+  }
+}
+
+class Bubbles extends StatefulWidget {
+  const Bubbles({Key? key}) : super(key: key);
+
+  @override
+  State<Bubbles> createState() => _BubblesState();
+}
+
+class _BubblesState extends State<Bubbles> with SingleTickerProviderStateMixin {
+  late final AnimationController animationController;
+  @override
+  void initState() {
+    super.initState();
+    animationController =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 800));
+    animationController.repeat();
+  }
+
+  @override
+  void dispose() {
+    animationController.dispose();
+    super.dispose();
+  }
+
+  double value = 0;
+  double count = 0.01;
+
+  @override
+  Widget build(BuildContext context) {
+    final screenSize = MediaQuery.sizeOf(context);
+    final child = Center(
+      child: AnimatedBuilder(
+        animation: animationController,
+        builder: (context, child) {
+          return ShaderBuilder(
+            (context, shader, child) {
+              return AnimatedSampler(
+                (image, size, canvas) {
+                  // Set the values for resolution and iTime
+                  shader.setFloat(0, size.width * 2);
+                  shader.setFloat(1, size.height * 2);
+                  shader.setFloat(2, value);
+                  shader.setFloat(3, count);
+
+                  value += 0.03;
+                  canvas.drawRect(
+                    Rect.fromLTWH(0, 0, size.width, size.height),
+                    Paint()..shader = shader,
+                  );
+                },
+                child: SizedBox(
+                  width: screenSize.width,
+                  height: screenSize.height,
+                ),
+              );
+            },
+            assetKey: 'shaders/bubbles.frag',
+          );
+        },
+      ),
+    );
+    return Scaffold(
+      body: Stack(
+        children: [
+          child,
+          // Center(
+          //   child: FilledButton(
+          //     onPressed: () {
+          //       count = count + 0.001;
+          //       setState(() {});
+          //     },
+          //     child: const Text(
+          //       "Click here",
+          //       style: TextStyle(fontSize: 40),
+          //     ),
+          //   ),
+          // )
+        ],
+      ),
     );
   }
 }

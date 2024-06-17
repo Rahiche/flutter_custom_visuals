@@ -3,14 +3,14 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_shaders/flutter_shaders.dart';
 
-class RippleDemoPage extends StatefulWidget {
-  const RippleDemoPage({super.key});
+class ElectroDemoPage extends StatefulWidget {
+  const ElectroDemoPage({super.key});
 
   @override
-  State<RippleDemoPage> createState() => _RippleDemoPageState();
+  State<ElectroDemoPage> createState() => _ElectroDemoPageState();
 }
 
-class _RippleDemoPageState extends State<RippleDemoPage>
+class _ElectroDemoPageState extends State<ElectroDemoPage>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
 
