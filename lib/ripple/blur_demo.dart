@@ -3,14 +3,14 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_shaders/flutter_shaders.dart';
 
-class RippleDemoPage extends StatefulWidget {
-  const RippleDemoPage({super.key});
+class BlurDemoPage extends StatefulWidget {
+  const BlurDemoPage({super.key});
 
   @override
-  State<RippleDemoPage> createState() => _RippleDemoPageState();
+  State<BlurDemoPage> createState() => _BlurDemoPageState();
 }
 
-class _RippleDemoPageState extends State<RippleDemoPage>
+class _BlurDemoPageState extends State<BlurDemoPage>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
 

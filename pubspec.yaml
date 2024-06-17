@@ -36,7 +36,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
   flutter_shaders: ^0.1.2
-
+  device_preview: ^1.2.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -60,6 +60,9 @@ flutter:
   uses-material-design: true
   shaders:
     - shaders/ripple.frag
+    - shaders/bubbles.frag
+    - shaders/sparkles.frag
+    - shaders/gradient_flow.frag
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/
