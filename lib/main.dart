@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_custom_visuals/dynamic_displacement/dynamic_displacement_demo.dart';
 import 'package:flutter_custom_visuals/ripple/ripple_demo.dart';
 
 void main() {
@@ -18,7 +19,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
 class DemoGridPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class DemoGridPage extends StatelessWidget {
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
         ),
-        itemCount: 2, 
+        itemCount: 2,
         itemBuilder: (context, index) {
           if (index == 0) {
             return GestureDetector(
@@ -71,11 +71,10 @@ class DemoGridPage extends StatelessWidget {
               ),
             );
           } else {
-            return Container(); 
+            return Container();
           }
         },
       ),
     );
   }
 }
-

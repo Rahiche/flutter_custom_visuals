@@ -5,7 +5,8 @@ class DynamicDisplacementDemo extends StatefulWidget {
   const DynamicDisplacementDemo({super.key});
 
   @override
-  State<DynamicDisplacementDemo> createState() => _DynamicDisplacementDemonState();
+  State<DynamicDisplacementDemo> createState() =>
+      _DynamicDisplacementDemoState();
 }
 
 class _DynamicDisplacementDemoState extends State<DynamicDisplacementDemo>
@@ -42,7 +43,6 @@ class _DynamicDisplacementDemoState extends State<DynamicDisplacementDemo>
     double normalizedX = details.localPosition.dx;
     double normalizedY = details.localPosition.dy;
 
-    print("details.localPosition.distance ${details.localPosition.distance}");
     double normalizedDeltaX = (details.delta.dx * 65);
     double normalizedDeltaY = (details.delta.dy * 65);
 
