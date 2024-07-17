@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_custom_visuals/dynamic_displacement/dynamic_displacement_demo.dart';
 import 'package:flutter_custom_visuals/ripple/ripple_demo.dart';
 
 void main() {
@@ -29,26 +30,49 @@ class DemoGridPage extends StatelessWidget {
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
         ),
-        itemCount: 1,
+        itemCount: 2,
         itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => RippleDemoPage(),
-                ),
-              );
-            },
-            child: Card(
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text("Ripple"),
+          if (index == 0) {
+            return GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => RippleDemoPage(),
+                  ),
+                );
+              },
+              child: Card(
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text("Ripple"),
+                  ),
                 ),
               ),
-            ),
-          );
+            );
+          } else if (index == 1) {
+            return GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DynamicDisplacementDemo(),
+                  ),
+                );
+              },
+              child: Card(
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text("Dynamic Displacement"),
+                  ),
+                ),
+              ),
+            );
+          } else {
+            return Container();
+          }
         },
       ),
     );
