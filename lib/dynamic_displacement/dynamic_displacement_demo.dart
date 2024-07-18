@@ -67,7 +67,7 @@ class _DynamicDisplacementDemoState extends State<DynamicDisplacementDemo>
     ).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: Sprung.criticallyDamped,
+        curve: Sprung.overDamped,
       ),
     )..addListener(() {
         setState(() => _delta = _animation.value);
