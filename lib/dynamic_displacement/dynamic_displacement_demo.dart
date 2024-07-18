@@ -40,8 +40,8 @@ class _DynamicDisplacementDemoState extends State<DynamicDisplacementDemo>
     double normalizedX = details.localPosition.dx;
     double normalizedY = details.localPosition.dy;
 
-    double normalizedDeltaX = (details.delta.dx * 45);
-    double normalizedDeltaY = (details.delta.dy * 45);
+    double normalizedDeltaX = (details.delta.dx * 55);
+    double normalizedDeltaY = (details.delta.dy * 55);
 
     setState(() {
       _position = Offset(normalizedX, normalizedY);
@@ -68,6 +68,7 @@ class _DynamicDisplacementDemoState extends State<DynamicDisplacementDemo>
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = MediaQuery.sizeOf(context).width < 500;
     return Scaffold(
       backgroundColor: Colors.black,
       body: Center(
@@ -76,13 +77,12 @@ class _DynamicDisplacementDemoState extends State<DynamicDisplacementDemo>
           child: GestureDetector(
             onPanUpdate: _updatePosition,
             onPanEnd: (_) => _animateToZero(),
-            onPanCancel: () => _animateToZero(),
             child: addLayer(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(48.0),
+              child: Column(
+                children: [
+                  Flexible(
+                    child: Padding(
+                      padding: EdgeInsets.all(isMobile ? 4 : 48.0),
                       child: Container(
                         color: Colors.black,
                         child: Text(
@@ -93,16 +93,17 @@ class _DynamicDisplacementDemoState extends State<DynamicDisplacementDemo>
                                   'Hello, world! ' *
                               2,
                           textAlign: TextAlign.center,
+                          overflow: TextOverflow.clip,
                           style: const TextStyle(
-                            fontSize: 45,
+                            fontSize: 42,
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),
