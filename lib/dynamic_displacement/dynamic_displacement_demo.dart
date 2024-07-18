@@ -64,8 +64,12 @@ class _DynamicDisplacementDemoState extends State<DynamicDisplacementDemo>
     _animation = Tween<Offset>(
       begin: _delta,
       end: const Offset(0, 0),
-    ).animate(CurvedAnimation(_controller, Sprung()))
-      ..addListener(() {
+    ).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Sprung.criticallyDamped,
+      ),
+    )..addListener(() {
         setState(() => _delta = _animation.value);
       });
     _controller.forward(from: 0.0);
@@ -183,9 +187,6 @@ A digital dawn before our eyes.""",
   }
 
   Widget buildPlayground() {
-    const minWidth = -1000.0;
-    const maxWidth = 1000.0;
-
     const min = -1000.0;
     const max = 1000.0;
 
