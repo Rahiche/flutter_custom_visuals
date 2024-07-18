@@ -36,20 +36,21 @@ class _DynamicDisplacementDemoState extends State<DynamicDisplacementDemo>
     super.dispose();
   }
 
-  double widgetWidth = 400;
-  double widgetHeight = 700;
-
   void _updatePosition(DragUpdateDetails details) {
     double normalizedX = details.localPosition.dx;
     double normalizedY = details.localPosition.dy;
 
-    double normalizedDeltaX = (details.delta.dx * 65);
-    double normalizedDeltaY = (details.delta.dy * 65);
+    double normalizedDeltaX = (details.delta.dx * 45);
+    double normalizedDeltaY = (details.delta.dy * 45);
 
     setState(() {
       _position = Offset(normalizedX, normalizedY);
       if (details.delta != const Offset(0, 0)) {
-        _delta = Offset(normalizedDeltaX, normalizedDeltaY);
+        _delta = Offset.lerp(
+          _delta,
+          Offset(normalizedDeltaX, normalizedDeltaY),
+          0.1,
+        )!;
       }
     });
   }
@@ -68,36 +69,42 @@ class _DynamicDisplacementDemoState extends State<DynamicDisplacementDemo>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Hello, From the Flutter Side'),
-      ),
       backgroundColor: Colors.black,
-      body: GestureDetector(
-        onPanUpdate: _updatePosition,
-        onPanEnd: (_) => _animateToZero(),
-        onPanCancel: () => _animateToZero(),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              addLayer(
-                child: Container(
-                  width: widgetWidth,
-                  height: widgetHeight,
-                  color: Colors.black,
-                  child: Text(
-                    'Hello, world! Hello, from Flutter world! Hello, world! Hello, world! Hello, world! Hello, world! Hello, world! Hello, world! Hello, world! Hello, world! Hello, world! Hello, world!' *
-                        4,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      fontSize: 45,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: GestureDetector(
+            onPanUpdate: _updatePosition,
+            onPanEnd: (_) => _animateToZero(),
+            onPanCancel: () => _animateToZero(),
+            child: addLayer(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(48.0),
+                      child: Container(
+                        color: Colors.black,
+                        child: Text(
+                          'Hello, world! Hello, from Flutter world! '
+                                  'Hello, world! Hello, world! Hello, world! '
+                                  'Hello, world! Hello, world! Hello, world! '
+                                  'Hello, world! Hello, world! Hello, world! '
+                                  'Hello, world! ' *
+                              2,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontSize: 45,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
+                  ],
                 ),
               ),
-            ],
+            ),
           ),
         ),
       ),
