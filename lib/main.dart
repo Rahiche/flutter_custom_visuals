@@ -3,10 +3,12 @@ import 'package:flutter_custom_visuals/dynamic_displacement/dynamic_displacement
 import 'package:flutter_custom_visuals/ripple/ripple_demo.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -14,20 +16,22 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: DemoGridPage(),
+      home: const DemoGridPage(),
     );
   }
 }
 
 class DemoGridPage extends StatelessWidget {
+  const DemoGridPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Flutter Custom Visuals'),
+        title: const Text('Flutter Custom Visuals'),
       ),
       body: GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
         ),
         itemCount: 2,
@@ -38,14 +42,14 @@ class DemoGridPage extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => RippleDemoPage(),
+                    builder: (context) => const RippleDemoPage(),
                   ),
                 );
               },
-              child: Card(
+              child: const Card(
                 child: Center(
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: EdgeInsets.all(8.0),
                     child: Text("Ripple"),
                   ),
                 ),
@@ -57,14 +61,14 @@ class DemoGridPage extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => DynamicDisplacementDemo(),
+                    builder: (context) => const DynamicDisplacementDemo(),
                   ),
                 );
               },
-              child: Card(
+              child: const Card(
                 child: Center(
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: EdgeInsets.all(8.0),
                     child: Text("Dynamic Displacement"),
                   ),
                 ),
