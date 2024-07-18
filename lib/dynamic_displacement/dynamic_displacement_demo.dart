@@ -40,8 +40,8 @@ class _DynamicDisplacementDemoState extends State<DynamicDisplacementDemo>
     double normalizedX = details.localPosition.dx;
     double normalizedY = details.localPosition.dy;
 
-    double normalizedDeltaX = (details.delta.dx * 55);
-    double normalizedDeltaY = (details.delta.dy * 55);
+    double normalizedDeltaX = (details.delta.dx * 55).clamp(-400, 400);
+    double normalizedDeltaY = (details.delta.dy * 55).clamp(-400, 400);
 
     setState(() {
       _position = Offset(normalizedX, normalizedY);
@@ -102,8 +102,8 @@ class _DynamicDisplacementDemoState extends State<DynamicDisplacementDemo>
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
