@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_shaders/flutter_shaders.dart';
+import 'package:sprung/sprung.dart';
 
 class DynamicDisplacementDemo extends StatefulWidget {
   const DynamicDisplacementDemo({super.key});
@@ -63,7 +64,7 @@ class _DynamicDisplacementDemoState extends State<DynamicDisplacementDemo>
     _animation = Tween<Offset>(
       begin: _delta,
       end: const Offset(0, 0),
-    ).animate(_controller)
+    ).animate(CurvedAnimation(_controller, Sprung()))
       ..addListener(() {
         setState(() => _delta = _animation.value);
       });
