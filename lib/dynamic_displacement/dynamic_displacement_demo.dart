@@ -72,32 +72,47 @@ class _DynamicDisplacementDemoState extends State<DynamicDisplacementDemo>
     return Scaffold(
       backgroundColor: Colors.black,
       body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: GestureDetector(
-            onPanUpdate: _updatePosition,
-            onPanEnd: (_) => _animateToZero(),
-            child: addLayer(
-              child: Column(
-                children: [
-                  Flexible(
-                    child: Padding(
-                      padding: EdgeInsets.all(isMobile ? 4 : 48.0),
-                      child: Container(
-                        color: Colors.black,
-                        child: Text(
-                          'Hello, world! Hello, from Flutter world! '
-                                  'Hello, world! Hello, world! Hello, world! '
-                                  'Hello, world! Hello, world! Hello, world! '
-                                  'Hello, world! Hello, world! Hello, world! '
-                                  'Hello, world! ' *
-                              2,
-                          textAlign: TextAlign.center,
-                          overflow: TextOverflow.clip,
-                          style: const TextStyle(
-                            fontSize: 42,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: GestureDetector(
+              onPanUpdate: _updatePosition,
+              onPanEnd: (_) => _animateToZero(),
+              child: addLayer(
+                child: Column(
+                  children: [
+                    Flexible(
+                      child: Padding(
+                        padding: EdgeInsets.all(isMobile ? 4 : 48.0),
+                        child: Container(
+                          color: Colors.black,
+                          child: const Text(
+                            """In realms where light and shadow play,
+Shaders weave the night and day,
+With code that dances, twists, and gleams,
+They craft the fabric of our dreams.
+
+Each pixel speaks in hues and tones,
+A symphony of whispered zones,
+Through matrices and vectors fine,
+They paint the world in arcs divine.
+
+In Flutter's embrace, they find their grace,
+Animating with vibrant pace,
+From shadows deep to highlights bright,
+They bring our visions into light.
+
+So here's to shaders, artists bold,
+With Flutter's tools, their stories told,
+In lines of code, they shape the skies,
+A digital dawn before our eyes.""",
+                            textAlign: TextAlign.center,
+                            overflow: TextOverflow.clip,
+                            style: TextStyle(
+                              fontSize: 35,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),
